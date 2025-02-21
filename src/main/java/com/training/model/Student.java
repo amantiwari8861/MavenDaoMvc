@@ -1,7 +1,7 @@
 package com.training.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Student 
 {
@@ -10,24 +10,24 @@ public class Student
 	private long mobileNo;
 	private char gender;
 	private float gradPerc;
-	private double salary;
+	private double fee;
 	private boolean isMember;
-	private LocalDate dob;
-	private LocalDateTime joining;
+	private Date dob;
+	private LocalDate joinedAt;
 	
 	public Student() {
 	}
-	public Student(long id, String name, long mobileNo, char gender, float gradPerc, double salary, boolean isMember,
-			LocalDate dob, LocalDateTime joining) {
+	public Student(long id, String name, long mobileNo, char gender, float gradPerc, double fee, boolean isMember,
+			Date dob, LocalDate joinedAt) {
 		this.id = id;
 		this.name = name;
 		this.mobileNo = mobileNo;
 		this.gender = gender;
 		this.gradPerc = gradPerc;
-		this.salary = salary;
+		this.fee = fee;
 		this.isMember = isMember;
 		this.dob = dob;
-		this.joining = joining;
+		this.joinedAt = joinedAt;
 	}
 	public long getId() {
 		return id;
@@ -59,11 +59,11 @@ public class Student
 	public void setGradPerc(float gradPerc) {
 		this.gradPerc = gradPerc;
 	}
-	public double getSalary() {
-		return salary;
+	public double getFee() {
+		return fee;
 	}
-	public void setSalary(double salary) {
-		this.salary = salary;
+	public void setFee(double fee) {
+		this.fee = fee;
 	}
 	public boolean isMember() {
 		return isMember;
@@ -71,22 +71,22 @@ public class Student
 	public void setMember(boolean isMember) {
 		this.isMember = isMember;
 	}
-	public LocalDate getDob() {
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
-	public LocalDateTime getJoining() {
-		return joining;
+	public LocalDate getJoinedAt() {
+		return joinedAt;
 	}
-	public void setJoining(LocalDateTime joining) {
-		this.joining = joining;
+	public void setJoinedAt(LocalDate joinedAt) {
+		this.joinedAt = joinedAt;
 	}
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", name=" + name + ", mobileNo=" + mobileNo + ", gender=" + gender + ", gradPerc="
-				+ gradPerc + ", salary=" + salary + ", isMember=" + isMember + ", dob=" + dob + ", joining=" + joining
+				+ gradPerc + ", fee=" + fee + ", isMember=" + isMember + ", dob=" + dob + ", joinedAt=" + joinedAt
 				+ "]";
 	}
 }

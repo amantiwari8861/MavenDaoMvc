@@ -6,11 +6,11 @@ import com.training.model.Student;
 
 public interface StudentDao {
 
-	long addStudent(Student student);
-	long updateStudent(Student student);
-	Student getStudentById(long id);
+	long addStudentDetails(Student student);
+	boolean updateStudent(Student student);
+	boolean deleteStudent(long id);
 	List<Student> getAllStudents();
-	long deleteStudentById(long id);
-    public String[] getAllColumns();
+	Student getStudentById(Student student);
+    String[] getColumnsName();
 
 }
