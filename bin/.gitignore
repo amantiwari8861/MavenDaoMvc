@@ -1,0 +1,6 @@
+target
+.settings
+.classpath
+.project
+
+# git rm -r --cached .settings .classpath .project
