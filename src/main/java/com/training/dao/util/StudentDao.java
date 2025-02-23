@@ -1,4 +1,4 @@
-package com.training.dao;
+package com.training.dao.util;
 
 import java.util.List;
 

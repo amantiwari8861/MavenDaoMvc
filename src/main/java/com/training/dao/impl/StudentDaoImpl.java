@@ -11,8 +11,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.training.dao.StudentDao;
 import com.training.dao.util.ConnectionFactory;
+import com.training.dao.util.StudentDao;
 import com.training.model.Student;
 
 public class StudentDaoImpl implements StudentDao {
