@@ -7,10 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .form_area {
-            background-color: #EDDCD9;
-            border: 2px solid #264143;
+            background-color: #becbd1;
+            border: 2px solid gray;
             border-radius: 20px;
-            box-shadow: 3px 4px 0px 1px #E99F4C;
+            box-shadow: 0 8px 22px 0 #2b2b2b;
             padding: 20px;
         }
 
@@ -29,23 +29,23 @@
 
         .form_style {
             outline: none;
-            border: 2px solid #264143;
-            box-shadow: 3px 4px 0px 1px #E99F4C;
+            border: 2px solid gray;
+            box-shadow: 0 2px 15px 0 #2b2b2b;
             width: 100%;
             padding: 12px 10px;
             border-radius: 4px;
             font-size: 15px;
         }
 
-        .btn {
+        .btnn {
             padding: 15px;
             margin-top: 25px;
             width: 100%;
             font-size: 15px;
-            background: #DE5499;
+            background: #89a0ab;
             border-radius: 10px;
             font-weight: 800;
-            box-shadow: 3px 3px 0px 0px #E99F4C;
+            box-shadow: 3px 3px 0px 0px #2b2b2b;
             border: none;
         }
     </style>
@@ -104,7 +104,7 @@
                                 <input type="date" class="form_style" id="dob" name="dob" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn">Submit</button>
+                        <button type="submit" class="btnn">Submit</button>
                     </form>
                 </div>
             </div>

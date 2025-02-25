@@ -1,7 +1,7 @@
 package com.training.model;
 
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Student 
 {
@@ -12,6 +12,15 @@ public class Student
 	private float gradPerc;
 	private double fee;
 	private boolean isMember;
+<<<<<<< HEAD
+	private Date dob;
+	private LocalDate joinedAt;
+	
+	public Student() {
+	}
+	public Student(long id, String name, long mobileNo, char gender, float gradPerc, double fee, boolean isMember,
+			Date dob, LocalDate joinedAt) {
+=======
 	private LocalDate dob;
 	private LocalDateTime joinedAt;
 	
@@ -20,6 +29,7 @@ public class Student
 	
 	public Student(long id, String name, long mobileNo, char gender, float gradPerc, double fee, boolean isMember,
 			LocalDate dob, LocalDateTime joinedAt) {
+>>>>>>> 5538ce6572100775b39ad98a15af9b2cd9041963
 		this.id = id;
 		this.name = name;
 		this.mobileNo = mobileNo;
@@ -73,16 +83,23 @@ public class Student
 	public void setMember(boolean isMember) {
 		this.isMember = isMember;
 	}
-	public LocalDate getDob() {
+	public Date getDob() {
 		return dob;
 	}
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+<<<<<<< HEAD
+	public LocalDate getJoinedAt() {
+		return joinedAt;
+	}
+	public void setJoinedAt(LocalDate joinedAt) {
+=======
 	public LocalDateTime getJoinedAt() {
 		return joinedAt;
 	}
 	public void setJoinedAt(LocalDateTime joinedAt) {
+>>>>>>> 5538ce6572100775b39ad98a15af9b2cd9041963
 		this.joinedAt = joinedAt;
 	}
 	@Override
