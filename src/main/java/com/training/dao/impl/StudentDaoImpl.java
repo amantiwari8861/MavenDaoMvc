@@ -16,6 +16,7 @@ public class StudentDaoImpl implements StudentDao {
 
 	private String columns[];
 
+<<<<<<< HEAD
     @Override
     public long addStudentDetails(Student student) {
         long rowsAffected = -1;
@@ -88,10 +89,112 @@ public class StudentDaoImpl implements StudentDao {
 			System.out.println(e.getLocalizedMessage());
 		}
 	          return status;
+=======
+    private void createTableIfNotExists() {
+        try (Connection con = ConnectionFactory.getMySqlConnection();
+             Statement st = con.createStatement()) {
+            st.execute("""
+                    CREATE TABLE IF NOT EXISTS Students (
+                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+                        name VARCHAR(100),
+                        mobileNo BIGINT,
+                        gender CHAR(1),
+                        gradPerc FLOAT,
+                        fee DOUBLE,
+                        isMember TINYINT(1),
+                        dob DATE,
+                        joinedAt DATETIME
+                    );
+                    """);
+            System.out.println("Students table is ready.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public long addStudent(Student student) {
+        String sql = "INSERT INTO Students (name, mobileNo, gender, gradPerc, fee, isMember, dob, joinedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (Connection con = ConnectionFactory.getMySqlConnection();
+             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            ps.setString(1, student.getName());
+            ps.setLong(2, student.getMobileNo());
+            ps.setString(3, String.valueOf(student.getGender()));
+            ps.setFloat(4, student.getGradPerc());
+            ps.setDouble(5, student.getFee());
+            ps.setBoolean(6, student.isMember());
+            ps.setDate(7, Date.valueOf(student.getDob()));
+            ps.setTimestamp(8, Timestamp.valueOf(student.getJoinedAt()));
+
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public long updateStudent(Student student) {
+        String sql = "UPDATE Students SET name=?, mobileNo=?, gender=?, gradPerc=?, fee=?, isMember=?, dob=?, joinedAt=? WHERE id=?";
+        try (Connection con = ConnectionFactory.getMySqlConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, student.getName());
+            ps.setLong(2, student.getMobileNo());
+            ps.setString(3, String.valueOf(student.getGender()));
+            ps.setFloat(4, student.getGradPerc());
+            ps.setDouble(5, student.getFee());
+            ps.setBoolean(6, student.isMember());
+            ps.setDate(7, Date.valueOf(student.getDob()));
+            ps.setTimestamp(8, Timestamp.valueOf(student.getJoinedAt()));
+            ps.setLong(9, student.getId());
+
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0 ? student.getId() : -1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    @Override
+    public Student getStudentById(long id) {
+        String sql = "SELECT * FROM Students WHERE id=?";
+        try (Connection con = ConnectionFactory.getMySqlConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Student(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getLong("mobileNo"),
+                        rs.getString("gender").charAt(0),
+                        rs.getFloat("gradPerc"),
+                        rs.getDouble("fee"),
+                        rs.getBoolean("isMember"),
+                        rs.getDate("dob").toLocalDate(),
+                        rs.getTimestamp("joinedAt").toLocalDateTime()
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Student not found
+>>>>>>> 5538ce6572100775b39ad98a15af9b2cd9041963
     }
 
     @Override
     public List<Student> getAllStudents() {
+<<<<<<< HEAD
         ArrayList<Student> al = new ArrayList<>();
 			try {
 				Connection con=	ConnectionFactory.getMySqlConnection();
@@ -127,6 +230,33 @@ public class StudentDaoImpl implements StudentDao {
 					System.out.println(e.getLocalizedMessage());
 				}
 			        return al;
+=======
+    	System.out.println("StudentDaoImpl.getAllStudents()");
+        List<Student> students = new ArrayList<>();
+        String sql = "SELECT * FROM Students";
+        try (Connection con = ConnectionFactory.getMySqlConnection();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+        	System.out.println("StudentDaoImpl.getAllStudents() 2");
+            while (rs.next()) {
+                students.add(new Student(
+                        rs.getLong("id"),
+                        rs.getString("name"),
+                        rs.getLong("mobileNo"),
+                        rs.getString("gender").charAt(0),
+                        rs.getFloat("gradPerc"),
+                        rs.getDouble("fee"),
+                        rs.getBoolean("isMember"),
+                        rs.getDate("dob").toLocalDate(),
+                        rs.getTimestamp("joinedAt").toLocalDateTime()
+                ));
+                System.out.println(students);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return students;
+>>>>>>> 5538ce6572100775b39ad98a15af9b2cd9041963
     }
 
     @Override
@@ -149,6 +279,7 @@ public class StudentDaoImpl implements StudentDao {
                 student.setJoinedAt(rs.getDate(9).toLocalDate());			
                 
             }
+<<<<<<< HEAD
             else {
                 student=null;
             }
@@ -168,4 +299,14 @@ public class StudentDaoImpl implements StudentDao {
     public String[] getColumnsName() {
         return columns;
      }
+=======
+
+            return columns;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return new String[0]; // Return an empty array if an error occurs
+    }    
+    
+>>>>>>> 5538ce6572100775b39ad98a15af9b2cd9041963
 }
